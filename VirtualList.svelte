@@ -23,9 +23,8 @@
 	let bottom = 0;
 	let average_height;
 
-  $: computedItems = items.map((item, index) => ({item, absoluteIndex: index}));
 
-	$: visible = computedItems.slice(start, end).map((data, i) => {
+	$: visible = items.slice(start, end).map((data, i) => {
 		return { index: i + start, data };
 	});
 
@@ -163,7 +162,7 @@
 	>
 		{#each visible as row (row.index)}
 			<svelte-virtual-list-row>
-				<slot item={row.data.item} absoluteIndex={row.data.absoluteIndex}>Missing template</slot>
+				<slot item={row.item} index={row.index}>Missing template</slot>
 			</svelte-virtual-list-row>
 		{/each}
 	</svelte-virtual-list-contents>
